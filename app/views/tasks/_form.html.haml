@@ -1,0 +1,24 @@
+= form_for(@task) do |f|
+
+  - if @task.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@task.errors.count, "error")
+        prohibited this task from being saved:
+      %ul
+        - @task.errors.full_messages.each do |message|
+          %li= message
+
+  - if @task.new_record?
+    = f.hidden_field(:project_id, value: @project_id)
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+
+  .field
+    = f.label :status
+    %br
+    = f.text_field :status
+  .actions
+    = f.submit
