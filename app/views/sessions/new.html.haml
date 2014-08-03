@@ -1,0 +1,18 @@
+%h1 Log in
+
+= form_tag sessions_path do
+
+  .field
+    = label_tag :email
+    %br
+    = text_field_tag :email
+
+  .field
+    = label_tag :password
+    %br
+    = password_field_tag :password
+
+  .actions
+    = submit_tag :Signup
+
+= link_to 'Sign up!', new_user_path
