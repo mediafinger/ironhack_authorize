@@ -13,8 +13,15 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Set base url of App
+  config.base_url = "http://localhost:3000/"
+
+  # Care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  # Send mail (yes, really!)
+  config.action_mailer.perform_deliveries = true
+  # Set delivery method for development to :letter_opener
+  config.action_mailer.delivery_method = :letter_opener
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
