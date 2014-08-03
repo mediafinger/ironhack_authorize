@@ -20,4 +20,15 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: /\S+@\S+\.\S+/
   validates :password, length: { minimum: 4 }, on: :create
   validates :password, confirmation: true
+
+  def confirm!
+    # one time token is not needed anymore, but we have to save that email is confirmed
+    update_attributes!(confirmation_token: nil, confirmed: true)
+    # optional: send email ...
+  end
+
+  def set_session_token
+    update_attributes(session_token: SecureRandom.urlsafe_base64(24))
+    return session_token
+  end
 end

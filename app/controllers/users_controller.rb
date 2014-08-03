@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge(confirmation_token: token))
 
     if @user.save
-      session[:user_id] = @user.id
+      set_session(@user)
       UserMailer.signup_confirmation(@user).deliver
       redirect_to projects_path, notice: 'User was successfully created.'
     else
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     user = User.find_by_confirmation_token(params[:confirmation_token])
 
     if user
-      user.update_attributes!(confirmation_token: nil, confirmed: true)  # one time token - not needed anymore
-      session[:user_id] = user.id     # we log the user in without asking for his password
+      user.confirm!
+      set_session(user)    # we log the user in without asking for his password
       redirect_to projects_path, notice: 'Your confirmed your email!'
     else
       redirect_to new_session_path, notice: 'Token not valid'
