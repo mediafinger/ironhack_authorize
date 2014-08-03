@@ -13,10 +13,10 @@ end
 PROJECTS = 10
 
 puts "Creating Users ..."
-User.create!(email: "ana@example.com",   password: "test")
-User.create!(email: "bella@example.com", password: "test")
-User.create!(email: "clara@example.com", password: "test")
-User.create!(email: "dora@example.com",  password: "test")
+User.create!(email: "ana@example.com",   password: "test", confirmed: true)
+User.create!(email: "bella@example.com", password: "test", confirmed: true)
+User.create!(email: "clara@example.com", password: "test", confirmed: true)
+User.create!(email: "dora@example.com",  password: "test", confirmed: true)
 
 puts "Creating Projects ..."
 (1..PROJECTS).each do |index|
