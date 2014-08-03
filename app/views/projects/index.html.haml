@@ -10,14 +10,15 @@
 %table
   %thead
     %tr
-      %th Name
-      %th
-      %th Task
+      %th Project
+      %th Tasks
   %tbody
     - @projects.each do |project|
       %tr
-        %td= "#{project.name} (#{project.status})"
-        %td= link_to 'New Task', new_task_path(project_id: project.id)
+        %td
+          = "#{project.name} (#{project.status})"
+          %br
+          = link_to 'New Task', new_task_path(project_id: project.id)
         %td
           %table
             - project.tasks.each do |task|

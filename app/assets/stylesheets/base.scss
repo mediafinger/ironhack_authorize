@@ -1,0 +1,77 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  color:     gray;
+}
+
+a {
+  color:     #22aaff;
+}
+
+table {
+  border-collapse:  collapse;
+  border:           1px solid #ddd;
+  margin:           1em;
+}
+
+table tr {
+  border:    0;
+  margin:   1em 0;
+}
+
+table td {
+  border:    0;
+  padding:   1em;
+}
+
+
+.alert {
+  background-color:  white;
+  box-sizing:        border-box;
+  margin:            auto;
+  min-height:        4em;
+  padding:           2em;
+  width:             50rem;
+}
+
+.alert-info {
+  color:  green;
+}
+
+#error_explanation {
+  background-color:  red;
+  box-sizing:        border-box;
+  color:             white;
+  margin:            auto;
+  min-height:        4em;
+  padding:           2em;
+  width:             50rem;
+}
+
+.field {
+  background-color:  white;
+  border:            1px dotted #ddd;
+  box-sizing:        border-box;
+  margin:            2em;
+  padding:           2em;
+}
+
+.actions {
+  background-color:  white;
+  border:            1px dotted #bbb;
+  box-sizing:        border-box;
+  margin:            2em;
+  padding:           2em;
+
+  input[type=submit] {
+    padding:          1em;
+    background:       #22aaff;
+    border:           0 none;
+    border-radius:    1em;
+    color:            white;
+    font-size:        1.2em;
+  }
+}
