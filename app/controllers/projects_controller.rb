@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @projects = Project.all
+    @projects = Project.visible_to(current_user)
+    authorize @projects
 
     if params[:status].present?
       @projects = @projects.select { |project| project.status == params[:status] }

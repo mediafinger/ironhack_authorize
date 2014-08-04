@@ -4,6 +4,14 @@ class Project < ActiveRecord::Base
 
   validates :name,   presence: true
 
+  def self.visible_to(user)
+    if user.admin? || user.po?
+      Project.all
+    elsif user.developer?
+      user.projects
+    end
+  end
+
   def status
     statuses = tasks.pluck(:status).uniq
 
