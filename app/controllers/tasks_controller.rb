@@ -4,11 +4,13 @@ class TasksController < ApplicationController
 
   def new
     @task       = Task.new
+    authorize @task
     @project_id = params[:project_id]
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params.merge(user_id: current_user.id))
+    authorize @task
 
     if @task.save
       redirect_to projects_url, notice: 'Task was successfully created.'
@@ -19,10 +21,12 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    authorize @task
   end
 
   def update
     @task = Task.find(params[:id])
+    authorize @task
 
     if @task && @task.update(task_params)
       redirect_to projects_url, notice: 'Task was successfully updated.'
