@@ -12,6 +12,22 @@ class ProjectPolicy < ApplicationPolicy
     user.admin? || user.po?
   end
 
+  # not used yet, included as example
+  def show?
+    user.admin? || user.po? || user.projects.find(record.id)
+  end
+
+  # not used yet, included as example
+  def update?
+    user.admin?
+  end
+
+  # not used yet, included as example
+  def destroy?
+    update?
+  end
+
+
   # the pundit way of scoping - can be called like this:
   # Pundit.policy_scope(user, Project.scope) - from everywhere, or
   # policy_scope(Project.scope)  - from the controller
