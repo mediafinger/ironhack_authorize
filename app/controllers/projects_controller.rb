@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @projects = Project.visible_to(current_user)
+    @projects = policy_scope(Project.all)  # Project.all is a scope
     authorize @projects
 
     if params[:status].present?

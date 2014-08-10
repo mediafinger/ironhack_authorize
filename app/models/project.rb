@@ -4,10 +4,6 @@ class Project < ActiveRecord::Base
 
   validates :name,   presence: true
 
-  def self.visible_to(user)
-    Pundit.policy_scope(user, Project.all)  # Project.all is a scope
-  end
-
   def status
     statuses = tasks.pluck(:status).uniq
 
