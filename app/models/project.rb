@@ -5,11 +5,7 @@ class Project < ActiveRecord::Base
   validates :name,   presence: true
 
   def self.visible_to(user)
-    if user.admin? || user.po?
-      Project.all
-    elsif user.developer?
-      user.projects
-    end
+    Pundit.policy_scope(user, Project.all)  # Project.all is a scope
   end
 
   def status
