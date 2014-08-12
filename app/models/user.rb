@@ -5,6 +5,13 @@ class User < ActiveRecord::Base
   ROLES = %w[admin developer po]
   serialize :roles, Array      # we want to use this string field like an Array
 
+  # Dynamically define methods like: admin? or developer?
+  ROLES.each do |role|
+    define_method "#{role}?" do
+      roles.include? role
+    end
+  end
+
   # has_secure_password is a Rails helper
   # it comes with an attr_accessor for :password, that's why we removed it
   # it also triggers some validations on password, as we wrote the validations already,
@@ -34,6 +41,24 @@ class User < ActiveRecord::Base
   def set_session_token
     update_attributes(session_token: SecureRandom.urlsafe_base64(24))
     return session_token
+  end
+
+  # setter that encapsulates logic and validation for the serialized field
+  def add_role(role)
+    role = role.to_s.downcase
+
+    if ROLES.include? role
+      user_roles = Array(roles)
+      if user_roles.count(role) > 0
+        errors.add(:role, "User has role #{role} already")
+      else
+        update_attributes!(roles: user_roles + Array(role))
+      end
+    end
+  end
+
+  def remove_role(role)
+    update_attributes!(roles: Array(roles) - Array(role.to_s.downcase))
   end
 
   private
