@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   # very simple email matcher ~ "includes an @ and a . and some charachters around them"
   # real email validation will happen over activation email
   validates :email, presence: true, uniqueness: true, format: /\S+@\S+\.\S+/
-  validates :password, length: { minimum: 4 }
+  validates :password, length: { minimum: 4 }, on: :create
   validates :password, confirmation: true
 end

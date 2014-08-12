@@ -7,6 +7,9 @@
     = csrf_meta_tags
 
   %body
+    - if current_user
+      = render 'layouts/session'
+
     - flash.each do |key, value|
       = content_tag :div, value, class: "alert alert-info"
 

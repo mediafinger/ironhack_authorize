@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  before_filter :authenticate
+
   def new
     @task       = Task.new
     @project_id = params[:project_id]
