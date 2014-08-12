@@ -29,6 +29,8 @@ group :development do
 
   gem 'awesome_print'
 
+  gem 'letter_opener'
+
   # Use Capistrano for deployment
   # gem 'capistrano-rails'
 end
