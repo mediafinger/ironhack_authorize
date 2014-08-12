@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140803205252) do
     t.string   "password_digest"
     t.string   "confirmation_token"
     t.boolean  "confirmed",          default: false
+    t.string   "session_token"
   end
 
 end
