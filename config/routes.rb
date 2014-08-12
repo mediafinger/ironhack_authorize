@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :projects,  only: [:create, :new, :index]
+  resources :sessions,  only: [:create, :new]
   resources :tasks,     only: [:create, :new, :edit, :update]
   resources :users,     only: [:create, :new]
 
-  root to: "users#new"
+  root to: "sessions#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
