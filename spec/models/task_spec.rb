@@ -20,6 +20,7 @@ require 'rails_helper'
 #     it should fail when
 #       no name is given
 
+
 describe Task do
 
   # group your tests with "describe" - e.g. for each method you test
@@ -97,6 +98,37 @@ describe Task do
         task = project.tasks.new(user: user, status: "todo")
         expect(task.valid?).to be false
       end
+    end
+  end
+
+
+  describe "scopes" do
+
+    let(:project) { Project.create(name: "p 1") }
+    let(:user)    { User.create(email: "ana@example") }
+
+    before do
+      user.projects << project
+    end
+
+    # these specs are pending
+    # pending specs are usually just a reminder to write them later
+    # later means as soon as possible
+    # so, what are you waiting for?
+    # please fill the stubs!
+    describe "todo" do
+      it "only returns tasks in the status todo"
+      it "returns an empty active record relation if no task is in the status todo"
+    end
+
+    describe "doing" do
+      it "only returns tasks in the status doing"
+      it "returns an empty active record relation if no task is in the status doing"
+    end
+
+    describe "done" do
+      it "only returns tasks in the status done"
+      it "returns an empty active record relation if no task is in the status done"
     end
   end
 
