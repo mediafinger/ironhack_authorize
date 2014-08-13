@@ -91,3 +91,7 @@ using rails has_secure_password and sending emails with authentication token.
         * is allowed to do everything other Users are allowed to do
         * + can update and delete all projects
         * + can update and delete all tasks
+11. Business Logic in Service classes
+12. Asynchronous Background Jobs with gem: sucker_punch and server gem: puma
+13. A rake task
+14. A schedule for cron jobs with gem: whenever
