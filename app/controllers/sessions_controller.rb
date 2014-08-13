@@ -25,8 +25,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.update_attributes(session_token: nil)
     session[:token] = nil
-    user.update_attributes(session_token: nil)
     redirect_to root_url, notice: "Logged out!"
   end
 

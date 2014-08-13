@@ -26,4 +26,5 @@
                 %td= task.name
                 %td= link_to task.status, edit_task_path(task)
 %br
-= link_to 'New Project', new_project_path
+- if policy(@projects).create?
+  = link_to 'New Project', new_project_path
