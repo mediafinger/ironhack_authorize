@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = policy_scope(Project.all)  # Project.all is a scope
-    authorize @projects
 
     if params[:status].present?
       @projects = @projects.select { |project| project.status == params[:status] }

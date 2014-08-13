@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   def new
     @task       = Task.new
     authorize @task
+
     @project_id = params[:project_id]
   end
 
