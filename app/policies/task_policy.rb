@@ -1,14 +1,5 @@
 class TaskPolicy < ApplicationPolicy
 
-  # not used yet, included as example
-  def index?
-    if user.admin? || user.po?
-      true
-    elsif user.developer?
-      (scope - user.tasks).empty?
-    end
-  end
-
   def create?
     true
   end
@@ -37,7 +28,7 @@ class TaskPolicy < ApplicationPolicy
       if user.admin? || user.po?
         scope
       elsif user.developer?
-        user.tasks
+        scope.where(id: user.tasks.pluck(:id))
       end
     end
 

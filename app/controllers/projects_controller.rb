@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
 
   before_filter :authenticate
+  after_action  :verify_authorized,    except: :index
+  after_action  :verify_policy_scoped, only:   :index
 
   def index
     @projects = policy_scope(Project.all)  # Project.all is a scope

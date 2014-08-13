@@ -1,13 +1,5 @@
 class ProjectPolicy < ApplicationPolicy
 
-  def index?
-    if user.admin? || user.po?
-      true
-    elsif user.developer?
-      (record - user.projects).empty?
-    end
-  end
-
   def create?
     user.admin? || user.po?
   end
@@ -37,7 +29,7 @@ class ProjectPolicy < ApplicationPolicy
       if user.admin? || user.po?
         scope
       elsif user.developer?
-        user.projects
+        scope.where(id: user.projects.pluck(:id))
       end
     end
 
