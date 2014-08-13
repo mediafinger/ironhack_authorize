@@ -9,8 +9,10 @@ class InactiveTasksDeleteJob
   # So the other version is the better one!
 
   def perform(users: users, inactivity: 14.days)
-    users.each do |user|
-      ::InactiveTasksService.new(user: user).delete
+    ActiveRecord::Base.connection_pool.with_connection do
+      users.each do |user|
+        ::InactiveTasksService.new(user: user).delete
+      end
     end
   end
 end
