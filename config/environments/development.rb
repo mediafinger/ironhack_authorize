@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Set base url of App
-  config.base_url = "http://localhost:3000/"
+  config.base_url = "http://localhost:3000"
 
   # Care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true

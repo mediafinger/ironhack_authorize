@@ -1,0 +1,12 @@
+-# UserMailer#inactive_tasks_warning
+
+%p= @greeting
+
+%ol
+  - @tasks.each do |task|
+    %li
+      %span.name=    "#{task.name} (#{task.status})"
+      %span.project= "in Project #{task.project.name}"
+      %span.date=    "last updated: #{task.updated_at.to_formatted_s(:short) }"
+
+%a(href=@link) Log in now
