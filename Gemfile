@@ -11,17 +11,18 @@ gem 'haml-rails'
 gem 'jbuilder',       '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
+gem 'puma'
 gem 'sass-rails',     '~> 4.0.3'
+gem 'sucker_punch'
 gem 'turbolinks'
 gem 'uglifier',       '>= 1.3.0'
+gem 'whenever'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # group :production do
 #   gem 'therubyracer',  '~> 0.12.0'
 # end
 
-# Use puma as the app server
-# gem 'puma'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
