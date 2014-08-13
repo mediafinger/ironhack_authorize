@@ -45,18 +45,10 @@ class User < ActiveRecord::Base
 
   # setter that encapsulates logic and validation for the serialized field
   def add_role(role)
-    role = role.to_s.downcase
-
-    if ROLES.include? role
-      user_roles = Array(roles)
-      if user_roles.count(role) > 0
-        errors.add(:role, "User has role #{role} already")
-      else
-        update_attributes!(roles: user_roles + Array(role))
-      end
-    end
+    update_attributes!(roles: Array(roles) + Array(role.to_s.downcase))
   end
 
+  # setter that encapsulates logic and validation for the serialized field
   def remove_role(role)
     update_attributes!(roles: Array(roles) - Array(role.to_s.downcase))
   end

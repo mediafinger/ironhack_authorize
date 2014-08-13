@@ -2,6 +2,126 @@ require 'rails_helper'
 
 describe User do
 
+  describe "Roles" do
+    describe "when validating the roles" do
+      let!(:user) { User.new(email: "name@example.com", password: "password") }
+
+      it "allows developer" do
+        expect(user.valid?).to eq true
+      end
+
+      it "allows po" do
+        user.roles << "po"
+        expect(user.valid?).to eq true
+      end
+
+      it "allows admin" do
+        user.roles << "admin"
+        expect(user.valid?).to eq true
+      end
+
+      it "allows a user without role" do
+        user.roles -= ["developer"]
+        expect(user.valid?).to eq true
+      end
+
+      it "does not permit a duplicated role" do
+        user.roles << "developer"
+        expect(user.valid?).to eq false
+      end
+
+      it "does not permit an unknown role" do
+        user.roles << "designer"
+        expect(user.valid?).to eq false
+      end
+    end
+
+    describe "when adding a role" do
+      let!(:user) { User.new(email: "name@example.com", password: "password") }
+
+      it "allows po" do
+        expect(user.add_role("po")).to eq true
+      end
+
+      it "allows admin" do
+        expect(user.add_role("admin")).to eq true
+      end
+
+      it "allows developer" do
+        user.remove_role("developer")  # "developer" is the default role
+        expect(user.add_role("developer")).to eq true
+      end
+
+      it "does not permit a duplicated role" do
+        expect { user.add_role("developer") }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it "does not permit an unknown role" do
+        expect { user.add_role("designer") }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
+    describe "when removing a role" do
+      let!(:user) { User.new(email: "name@example.com", password: "password") }
+
+      it "allows po" do
+        expect(user.remove_role("po")).to eq true
+      end
+
+      it "allows admin" do
+        expect(user.remove_role("admin")).to eq true
+      end
+
+      # this validation is not implemented yet
+      it "does not permit removing the last role" do
+        expect(user.remove_role("developer")).to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it "does not care about unknown roles" do
+        expect(user.remove_role("designer")).to eq true
+      end
+    end
+
+    describe "when checking a user for the role" do
+      let!(:user) { User.new(email: "name@example.com", password: "password") }
+
+      context "admin" do
+        it "is false" do
+          expect(user.admin?).to eq false
+        end
+
+        it "is true" do
+          user.add_role("admin")
+          expect(user.admin?).to eq true
+        end
+      end
+
+      context "developer" do
+        # developer is default value - this is tested here implicitly
+        it "is false" do
+          user.remove_role("developer")
+          expect(user.developer?).to eq false
+        end
+
+        it "is true" do
+          expect(user.developer?).to eq true
+        end
+      end
+
+      context "po" do
+        it "is false" do
+          expect(user.po?).to eq false
+        end
+
+        it "is true" do
+          user.add_role("po")
+          expect(user.po?).to eq true
+        end
+      end
+    end
+  end
+
+
   describe "when ensuring that the user model is valid" do
     # User objects usually have many fields... so better create a user factory!
     before do
