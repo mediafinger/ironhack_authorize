@@ -20,4 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  error:
+    email: "Email or password is invalid."
   hello: "Hello world"

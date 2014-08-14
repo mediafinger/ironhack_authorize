@@ -1,4 +1,5 @@
 #user_banner
+  = I18n.t("hello")
   = "You are logged in as #{current_user.email}"
   |
   = link_to "Log Out", session_path("current"), method: "delete"

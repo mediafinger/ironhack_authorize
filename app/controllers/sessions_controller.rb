@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     else
       # we could count the failed login attempts to either block the account for some time
       # or to insert an artifical, growing delay - this helps agains automated bruce force attacks
-      flash[:notice] = "Email or password is invalid."
+      flash[:notice] = I18n.t("error.email")
       render :new
     end
   end

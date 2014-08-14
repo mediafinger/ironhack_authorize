@@ -1,5 +1,10 @@
 %h1 Listing projects
 %p
+  Switch your language:
+  = link_to 'Switch to English',  projects_path(locale: "en")
+  = link_to 'Cambia a Español',   projects_path(locale: "es")
+
+%p
   Show only projects in the status:
   = link_to 'todo',  projects_path(status: "todo")
   = link_to 'doing', projects_path(status: "doing")

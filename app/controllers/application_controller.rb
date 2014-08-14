@@ -7,6 +7,35 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :set_locale
+
+  def set_locale
+    user_locale = params[:locale] || cookies[:locale]
+    set_cookie(user_locale)
+    I18n.locale = check_availability(user_locale)  || I18n.default_locale
+  end
+
+  # refactor me, please!
+  def set_cookie(locale)
+    if locale
+      cookies[:locale] = locale
+    else
+      cookies[:locale] = nil
+    end
+
+    locale
+  end
+
+  # better set I18n.available_locales = ['en', 'es']
+  # and work with this variable, than having an anonymous random array somewhere in the code
+  def check_availability(locale)
+    if ['en', 'es'].include? locale.to_s
+      locale
+    else
+      false
+    end
+  end
+
   def authenticate
     redirect_to new_session_url, alert: "Not logged in" if current_user.nil?
   end

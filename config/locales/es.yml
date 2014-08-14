@@ -1,0 +1,5 @@
+es:
+  error:
+    email: "Email o contraseña no es valido."
+  hello: "Hola mundo"
+
