@@ -2,8 +2,10 @@ class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  after_create :create_activity
-  after_update :update_activity
+  after_create  :create_activity
+  after_update  :update_activity
+  after_destroy :destroy_activity
+
 
   validates :name,    presence: true
   validates :project, presence: true
@@ -31,6 +33,15 @@ class Task < ActiveRecord::Base
       action: :updated,
       occured_at: Time.now,
       options: { name: name, status: status, id: id, type: self.class.to_s.downcase }
+    )
+  end
+
+  def destroy_activity
+    CreateActivityJob.new.perform(
+      user: user,
+      action: :destroyed,
+      occured_at: Time.now,
+      options: { name: name, status: status, type: self.class.to_s.downcase }
     )
   end
 end
