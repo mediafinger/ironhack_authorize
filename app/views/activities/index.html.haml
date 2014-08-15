@@ -1,0 +1,9 @@
+%ol
+  - @activities.each do |activity|
+    %li
+      %ul
+        %li= activity.user.email
+        %li= activity.task.name
+        %li= activity.task.status
+        %li= activity.action
+        %li= activity.occured_at

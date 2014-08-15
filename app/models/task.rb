@@ -2,6 +2,8 @@ class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  after_create :create_activity
+
   validates :name,    presence: true
   validates :project, presence: true
   validates :user,    presence: true
@@ -10,4 +12,15 @@ class Task < ActiveRecord::Base
   scope :todo,  -> { where(status: "todo")  }
   scope :doing, -> { where(status: "doing") }
   scope :done,  -> { where(status: "done")  }
+
+  private
+
+  def create_activity
+    CreateActivityJob.new.perform(
+      user: user,
+      task: self,
+      action: :created,
+      occured_at: Time.now
+    )
+  end
 end
