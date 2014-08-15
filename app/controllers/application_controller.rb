@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    redirect_to new_session_url, alert: "Not logged in" if current_user.nil?
+    redirect_to new_session_path, alert: "Not logged in" if current_user.nil?
   end
 
   def set_session(user)

@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     authorize @task
 
     if @task.save
-      redirect_to projects_url, notice: 'Task was successfully created.'
+      redirect_to projects_path, notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     authorize @task
 
     if @task && @task.update(task_params)
-      redirect_to projects_url, notice: 'Task was successfully updated.'
+      redirect_to projects_path, notice: 'Task was successfully updated.'
     else
       render :edit
     end

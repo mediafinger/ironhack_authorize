@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
   def destroy
     current_user.update_attributes(session_token: nil)
     session[:token] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_path, notice: "Logged out!"
   end
 
   private

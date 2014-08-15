@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
     authorize @project
 
     if @project.save
-      redirect_to projects_url, notice: 'Project was successfully created.'
+      redirect_to projects_path, notice: 'Project was successfully created.'
     else
       render :new
     end
