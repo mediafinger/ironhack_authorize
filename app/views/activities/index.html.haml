@@ -1,9 +1,9 @@
 %ol
   - @activities.each do |activity|
     %li
-      %ul{ class: activity.action }
-        %li= activity.task.status
+      %ul{ class: [activity.action, :task] }
+        %li= activity.event[:status]
         %li=I18n.t("activities.tasks.#{activity.action}",
-                      name: activity.task.name,
+                      name: activity.event[:name],
                       user: activity.user.email)
         = "#{time_ago_in_words(activity.occured_at)} ago"

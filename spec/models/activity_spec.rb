@@ -9,16 +9,16 @@ describe Activity do
       let(:project) { Project.create(name: "hey ho") }
 
       it "should create an Activity" do
-        task = Task.create(user: user, project: project, name: "Something", status: "todo")
+        Task.create(user: user, project: project, name: "Something", status: "todo")
 
-        expect(Activity.where(task: task, user: user).first).to be
+        expect(Activity.where(user: user).first).to be
       end
     end
 
     context "update" do
       let(:user)    { User.create(email: "mike@brown.com", password: "dontshoot") }
       let(:project) { Project.create(name: "hey ho") }
-      let!(:task)    { Task.create(user: user, project: project, name: "Something", status: "todo") }
+      let!(:task)   { Task.create(user: user, project: project, name: "Something", status: "todo") }
 
       it "should create an Activity" do
         expect{task.update_attributes(status: "doing")}.to change{Activity.all.count}.by(1)

@@ -1,7 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
-  has_many   :activities
 
   after_create :create_activity
   after_update :update_activity
@@ -20,18 +19,18 @@ class Task < ActiveRecord::Base
   def create_activity
     CreateActivityJob.new.perform(
       user: user,
-      task: self,
       action: :created,
-      occured_at: Time.now
+      occured_at: Time.now,
+      options: { name: name, status: status, id: id, type: self.class.to_s.downcase }
     )
   end
 
   def update_activity
     CreateActivityJob.new.perform(
       user: user,
-      task: self,
       action: :updated,
-      occured_at: Time.now
+      occured_at: Time.now,
+      options: { name: name, status: status, id: id, type: self.class.to_s.downcase }
     )
   end
 end

@@ -8,6 +8,7 @@ if Rails.env == "development"
   User.destroy_all
   Project.destroy_all
   Task.destroy_all
+  Activity.destroy_all
 end
 
 PROJECTS = 10
