@@ -76,6 +76,20 @@ table td {
   }
 }
 
+.task {
+  box-sizing: border-box;
+  margin:  1em;
+  padding: 0.5em;
+}
+
+.created {
+  color: green;
+}
+
+.updated {
+  color: blue;
+}
+
 #user_banner {
   text-align: right;
 }

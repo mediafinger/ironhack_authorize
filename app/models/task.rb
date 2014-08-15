@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   has_many   :activities
 
   after_create :create_activity
+  after_update :update_activity
 
   validates :name,    presence: true
   validates :project, presence: true
@@ -21,6 +22,15 @@ class Task < ActiveRecord::Base
       user: user,
       task: self,
       action: :created,
+      occured_at: Time.now
+    )
+  end
+
+  def update_activity
+    CreateActivityJob.new.perform(
+      user: user,
+      task: self,
+      action: :updated,
       occured_at: Time.now
     )
   end

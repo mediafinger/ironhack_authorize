@@ -23,6 +23,7 @@ en:
   activities:
     tasks:
       created: "The task %{name} was created by %{user} at:"
+      updated: "The task %{name} was updated by %{user} at:"
   error:
     email: "Email or password is invalid."
   hello: "Hello world"

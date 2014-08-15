@@ -2,6 +2,7 @@ es:
   activities:
     tasks:
       created: "La tarea %{name} ha sido creada por %{user} hace:"
+      updated: "La tarea %{name} ha sido actualizada por %{user} hace:"
   error:
     email: "Email o contraseña no es valido."
   hello: "Hola mundo"
