@@ -6,4 +6,6 @@ es:
   error:
     email: "Email o contraseña no es valido."
   hello: "Hola mundo"
-
+  views:
+    pagination:
+      truncate: ...

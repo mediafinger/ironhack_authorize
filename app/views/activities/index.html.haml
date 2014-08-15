@@ -1,3 +1,5 @@
+= render 'layouts/pagination', collection: @activities
+
 %ol
   - @activities.each do |activity|
     %li
@@ -7,3 +9,5 @@
                       name: activity.event[:name],
                       user: activity.user.email)
         = "#{time_ago_in_words(activity.occured_at)} ago"
+
+= render 'layouts/pagination', collection: @activities
