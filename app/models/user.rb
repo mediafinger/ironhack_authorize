@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_many                :tasks
+  has_many                :activities
 
   ROLES = %w[admin developer po]
   serialize :roles, Array      # we want to use this string field like an Array

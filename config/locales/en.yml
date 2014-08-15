@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activities:
+    tasks:
+      created: "The task %{name} was created by %{user} at:"
   error:
     email: "Email or password is invalid."
   hello: "Hello world"
