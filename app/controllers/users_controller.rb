@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_filter :redirect_if_logged_in, only: [:new, :create, :confirm]
   skip_before_filter :authenticate, only: [:new, :create, :confirm]
 
   def new

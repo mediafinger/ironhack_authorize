@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+  before_filter :redirect_if_logged_in, only: [:new, :create]
   skip_before_filter :authenticate, only: [:new, :create]
 
   def new

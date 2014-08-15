@@ -55,6 +55,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def redirect_if_logged_in
+    if current_user
+      redirect_to projects_path, notice: "You are already logged in!"
+    end
+  end
+
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
 
