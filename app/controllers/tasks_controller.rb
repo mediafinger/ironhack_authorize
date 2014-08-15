@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
 
-  before_filter :authenticate
   after_action  :verify_authorized
 
   def new

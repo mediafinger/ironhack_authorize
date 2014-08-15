@@ -2,4 +2,8 @@
   = I18n.t("hello")
   = "You are logged in as #{current_user.email}"
   |
+  = link_to "Activities", activities_path
+  |
+  = link_to "Projects", projects_path
+  |
   = link_to "Log Out", session_path("current"), method: "delete"

@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_filter :authenticate, only: [:new, :create]
+
   def new
   end
 
@@ -8,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user && user.confirmed && user.authenticate(session_params[:password])
       set_session(user)
-      redirect_to projects_path, notice: "Welcome back!"
+      redirect_to activities_path, notice: "Welcome back!"
 
     elsif user && !user.confirmed     # User has not confirmed his account yet and can not log in (customer support has to handle typos in emails on signup)
       user.update_attributes!(confirmation_token: SecureRandom.urlsafe_base64(24))   # we create a new token
