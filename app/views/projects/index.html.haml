@@ -29,7 +29,10 @@
             - project.tasks.each do |task|
               %tr
                 %td= task.name
-                %td= link_to task.status, edit_task_path(task)
+                - if task.user == current_user
+                  %td= link_to task.status, edit_task_path(task)
+                - else
+                  %td= task.status
 %br
 - if policy(@projects).create?
   = link_to 'New Project', new_project_path

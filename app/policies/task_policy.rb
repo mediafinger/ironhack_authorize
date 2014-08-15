@@ -6,11 +6,11 @@ class TaskPolicy < ApplicationPolicy
 
   # not used yet, included as example
   def show?
-    user.admin? || user.po? || user.tasks.find(record.id)
+    user.admin? || user.po? || record.user == user
   end
 
   def update?
-    user.admin? || user.tasks.find(record.id)
+    user.admin? || record.user == user
   end
 
   # not used yet, included as example
