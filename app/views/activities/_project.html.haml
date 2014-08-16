@@ -1,0 +1,5 @@
+%li
+  %ul{ class: [activity.action, activity.item_type] }
+    %li=I18n.t("activities.projects.#{activity.action}",
+                  name: activity.event[:name])
+    = "#{time_ago_in_words(activity.occured_at)} ago"

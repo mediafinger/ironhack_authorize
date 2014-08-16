@@ -1,13 +1,14 @@
+%h2 Activities
+
 = render 'layouts/pagination', collection: @activities
 
 %ol
   - @activities.each do |activity|
-    %li
-      %ul{ class: [activity.action, :task] }
-        %li= activity.event[:status]
-        %li=I18n.t("activities.tasks.#{activity.action}",
-                      name: activity.event[:name],
-                      user: activity.user.email)
-        = "#{time_ago_in_words(activity.occured_at)} ago"
+
+    - if activity.item_type == "task"
+      = render 'task', activity: activity
+
+    - elsif activity.item_type == "project"
+      = render 'project', activity: activity
 
 = render 'layouts/pagination', collection: @activities

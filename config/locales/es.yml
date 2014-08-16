@@ -1,9 +1,12 @@
 es:
   activities:
+    projects:
+      created: "El projecto %{name} ha sido creado hace:"
+      deleted: "El projecto %{name} ha sido eliminado hace:"
     tasks:
       created: "La tarea %{name} ha sido creada por %{user} hace:"
       updated: "La tarea %{name} ha sido actualizada por %{user} hace:"
-      destroyed: "La tarea %{name} ha sido eliminada por %{user} hace:"
+      deleted: "La tarea %{name} ha sido eliminada por %{user} hace:"
   error:
     email: "Email o contraseña no es valido."
   hello: "Hola mundo"

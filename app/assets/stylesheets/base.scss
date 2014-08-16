@@ -76,10 +76,15 @@ table td {
   }
 }
 
-.task {
+.task .project {
   box-sizing: border-box;
   margin:  1em;
   padding: 0.5em;
+}
+
+.project {
+  background-color: #ccccff;
+  background: linear-gradient(to right, #ccccff 1%, #ffffff 30%);
 }
 
 .created {
@@ -90,7 +95,7 @@ table td {
   color: blue;
 }
 
-.destroyed {
+.deleted {
   color: red;
 }
 
