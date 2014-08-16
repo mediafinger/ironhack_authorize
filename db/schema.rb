@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 20140815084008) do
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
-    t.integer  "user_id"
     t.string   "action"
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.integer  "user_id"
     t.text     "event"
     t.datetime "occured_at"
     t.datetime "created_at"
