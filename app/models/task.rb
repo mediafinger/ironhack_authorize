@@ -1,11 +1,8 @@
 class Task < ActiveRecord::Base
+  include Activities
+
   belongs_to :project
   belongs_to :user
-
-  after_create  :create_activity
-  after_update  :update_activity
-  after_destroy :destroy_activity
-
 
   validates :name,    presence: true
   validates :project, presence: true
@@ -18,30 +15,7 @@ class Task < ActiveRecord::Base
 
   private
 
-  def create_activity
-    CreateActivityJob.new.perform(
-      user: user,
-      action: :created,
-      occured_at: Time.now,
-      options: { name: name, status: status, id: id, type: self.class.to_s.downcase }
-    )
-  end
-
-  def update_activity
-    CreateActivityJob.new.perform(
-      user: user,
-      action: :updated,
-      occured_at: Time.now,
-      options: { name: name, status: status, id: id, type: self.class.to_s.downcase }
-    )
-  end
-
-  def destroy_activity
-    CreateActivityJob.new.perform(
-      user: user,
-      action: :destroyed,
-      occured_at: Time.now,
-      options: { name: name, status: status, type: self.class.to_s.downcase }
-    )
+  def activity_data
+    { name: name, status: status, user: user.try(:email) || "n/a" }
   end
 end
